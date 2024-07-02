@@ -16,6 +16,15 @@ class StoreController extends Controller
     {
         return view('store-add');
     }
+    public function showAddCouponForm()
+{
+
+    $stores = Store::all();
+
+
+    return view('coupon-add', compact('stores'));
+}
+
 
     public function store(Request $request)
     {

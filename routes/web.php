@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\CouponController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,9 +53,9 @@ Route::get('/store-add',function(){
     return view('store-add');
 })->name('store.add');
 
-Route::get('/coupon-add',function(){
-    return view('coupon-add');
-})->name('coupon.add');
+Route::get('/coupon-add', [StoreController::class, 'showAddCouponForm'])->name('coupon.add');
 
 Route::post('/stores',[StoreController::class, 'store'])->name('stores.store');
 Route::resource('stores', StoreController::class);
+
+Route::resource('coupons', CouponController::class);
