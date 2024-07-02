@@ -7,16 +7,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="msapplication-tap-highlight" content="no" />
-  
-  
-  <!-- Chrome, Firefox OS and Opera -->
-  <meta name="theme-color" content="#49CEFF">
-  <!-- Windows Phone -->
-  <meta name="msapplication-navbutton-color" content="#49CEFF" />
-  <!-- iOS Safari -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
 
   <title>Store List | SoldCoupons</title>
   <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
@@ -33,22 +24,13 @@
 
   <link rel="stylesheet" href="{{ asset('css/style.css')}}">
 
-
-<!--
-  <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
-  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
--->
-    <!--[if lt IE 9]>
-      <script src="bower_components/html5shiv/dist/html5shiv.min,js"></script>
-      <script src="bower_components/respondJs/dest/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body class="icon-menu menu-alt">
   <!--Preloader-->
  <div id="preloader">
       <div class="refresh-preloader"><div class="preloader"><i>.</i><i>.</i><i>.</i></div></div>
-</div> 
+</div>
 
 
   <div class="wrapper">
@@ -57,7 +39,7 @@
   @include('partials.sidebar')
   @include('partials.notibar')
 
-    
+
     <div class="container-fluid">
      <div class="row">
         <div class="col-lg-12">
@@ -76,44 +58,39 @@
                   </tr>
                 </thead>
                 <tbody>
-                               
+                            @foreach($stores as $store)
                   <tr>
                     <td>
-                    	<!--<img class="mousep" data-toggle="modal" data-target="#modal-click" src="" style="height:25px; width:auto">-->
-                        <p class="mousep" data-toggle="modal" data-target="#modal-click"></p>
+                    	{{$store->store_name}}
                     </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td data-toggle="tooltip" data-placement="top" title="">
+                    <td>{{ $store->category_id}}</td>
+                    <td>{{ $store->store_url}}</td>
+                    <td>{{ $store->country}}</td>
+                    <td>{{ $store->description}}
 						</td>
-                    
-                    <td> <label> <input class="toggle toggle-info" type="checkbox"  
-                    				
-                                    > <i></i></label> </td>
-                    <td> <label> <input class="toggle toggle-info" type="checkbox" 
-                    
-                        	> <i></i></label> </td>
-                    <td> <button type="button" class="btn btn-warning raised icon m-r-10" data-toggle="tooltip" data-placement="top" title="Edit Store"> 
+
+                    <td> <label> <input class="toggle toggle-info" type="checkbox" {{ $store->featured ? 'checked' : ''}}    > <i></i></label> </td>
+                    <td> <label> <input class="toggle toggle-info" type="checkbox"  {{ $store->enabled ? 'checked' : ''}}   > <i></i></label> </td>
+                    <td> <button type="button" class="btn btn-warning raised icon m-r-10" data-toggle="tooltip" data-placement="top" title="Edit Store">
                              <i class="zmdi zmdi-edit"></i> </button>
-                         <button type="button" class="btn btn-danger raised icon" data-toggle="tooltip" data-placement="top" title="Remove Store"> 
-                             <i class="zmdi zmdi-close"></i> </button>    
+                         <button type="button" class="btn btn-danger raised icon" data-toggle="tooltip" data-placement="top" title="Remove Store">
+                             <i class="zmdi zmdi-close"></i> </button>
                     </td>
                   </tr>
-            
-                  
-                  
-                               
-                  
-                  
-                  
+
+@endforeach
+
+
+
+
+
                 </tbody>
               </table>
             </div>
 
-            
 
-            
+
+
 
         </div>
       </div>
@@ -133,8 +110,8 @@
                   <img src="img/brands/amazon-logo.png" width="100" />
               </div>
               <div class="modal-body">
-               
-                  
+
+
 <div class="row">
   <div class="form-group">
     <label for="store_name" class="col-sm-1 control-label">Store Name</label>
@@ -169,7 +146,7 @@
     <div class="col-sm-5 p-r-30">
       <div class="select">
       	<input type="text" disabled class="form-control material" id="store_url" value="Department Stores" >
-      
+
       </div>
     </div>
   </div>
@@ -177,8 +154,8 @@
     <label for="store_url" class="col-sm-1 control-label">Country</label>
     <div class="col-sm-5">
     <input type="text" disabled class="form-control material" id="store_url" value="United States" >
-    
- 
+
+
     </div>
   </div>
 </div>
@@ -209,18 +186,18 @@
   </div>
 </div>
 <!--- Row -->
-                  
+
                   <div class="row p-t-40">
-                  
+
                   <div class="form-group">
                     <label for="store_title" class="col-sm-2 control-label">Store Title</label>
                     <div class="col-sm-8 p-r-30">
                       <input disabled type="text" class="form-control material" id="store_title" placeholder="store title">
                     </div>
                   </div>
-                 
+
                   </div> <!--- Row -->
-                  
+
                   <div class="row p-t-20">
                     <div class="col-lg-12">
                       <label for="description" class="control-label">Description</label>
@@ -228,9 +205,9 @@
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id sagittis dolor. Fusce cursus felis sit amet sodales hendrerit. Vestibulum interdum tortor id gravida eleifend. Fusce quam leo, malesuada ut justo ut, posuere aliquet eros. Sed laoreet, lorem vitae rutrum semper, nunc purus bibendum dolor, eu condimentum urna ante quis arcu. Vivamus vulputate, velit et ultricies sagittis, odio mauris tincidunt lorem, vitae varius urna dolor a neque. Maecenas vitae dui vitae lacus tincidunt mattis. Sed convallis suscipit ex. Vestibulum vulputate accumsan sem eu auctor. Praesent a euismod nulla, et commodo enim. </textarea>
                     </div>
                    </div> <!--- Row--->
-                  
-              
-                
+
+
+
               </div> <!-- Modal Body ---->
               <div class="modal-footer">
                   <button type="button" class="btn btn-sm btn-default m-b-5" data-dismiss="modal">Close</button>
@@ -238,8 +215,8 @@
           </div>
       </div>
   </div>
-              
-              
+
+
   <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
   <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
   <script src="{{ asset('bower_components/metisMenu/dist/metisMenu.min.js') }}"></script>
@@ -255,7 +232,7 @@
 
 
   <script src="{{ asset('js/common.js') }}"></script>
-  
+
 
 
   <script>

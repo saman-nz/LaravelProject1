@@ -1,0 +1,18 @@
+.purple{
+    background: #aa66cc;
+    color:#fff;
+    border:unset;
+    padding: 10px;
+
+}
+div#app{
+    height:100vh;
+}
+.warning-bg {
+    background: #ffbb33 !important;
+}
+.logo-image {
+
+    width: 200px;
+   
+}

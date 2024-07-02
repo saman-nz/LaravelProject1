@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +18,14 @@ use App\Http\Controllers\ProductController;
 // Route::get('/', function () {
 //     return view('index');
 // });
-Route::get('/', [ProductController::class,'index'])->name('products.index');
-Route::get('products/create', [ProductController::class,'create'])->name('products.create');
-Route::post('products/store', [ProductController::class,'store'])->name('products.store');
+Route::get('/', function(){
+    return view('index');
+});
+
 
 Route::get('/cp', function () {
-    return view('cp.index');
+
+    return view('auth.login');
 });
 Route::get('/category-single', function () {
     return view('category-single');
@@ -37,9 +39,7 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/store-list', function () {
-    return view('store-list');
-})->name('store.list');
+
 
 Auth::routes();
 
@@ -47,3 +47,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/hash-password/{password}', function(Request $request){
     return Hash::make($request->password);
 });
+Route::get('/store-list',[StoreController::class,'index'])->name('store.list');
+Route::get('/store-add',function(){
+    return view('store-add');
+})->name('store.add');
+
+Route::get('/coupon-add',function(){
+    return view('coupon-add');
+})->name('coupon.add');
+
+Route::post('/stores',[StoreController::class, 'store'])->name('stores.store');
+Route::resource('stores', StoreController::class);
